@@ -1,0 +1,27 @@
+{
+  "name": "cubb",
+  "version": "1.0.1",
+  "description": "cubb是一种命令行的文本标记语言, 用于输出更友好的命令行文本。",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "example": "node ./examples/index"
+  },
+  "keywords": [
+    "command",
+    "cli",
+    "ubb",
+    "chalk"
+  ],
+  "author": "Spikef",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://@github.com:Spikef/cubb.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "^2.0.1",
+    "mocha": "^3.4.2"
+  }
+}
