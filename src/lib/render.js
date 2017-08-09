@@ -94,6 +94,7 @@ function renderTable(token, options) {
     var padding = utils.repeatChars(opts.padding);
     var rowSpace = utils.repeatChars('\n', opts.rowSpace);
     var colSpace = utils.repeatChars(opts.colSpace);
+    var titlePadding = utils.repeatChars(opts.titlePadding);
 
     var string = '';
 
@@ -120,7 +121,7 @@ function renderTable(token, options) {
 
         if (row.type === 'title') {
             if (!rowSpace) string += '\n';
-            string += padding;
+            string += titlePadding;
             string += style('<u>' + row.title + '</u>');
             if (!rowSpace) string += '\n';
         } else if (row.type === 'row') {

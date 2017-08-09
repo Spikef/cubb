@@ -19,7 +19,8 @@ var configs = {
         margin: 1,
         padding: 2,
         rowSpace: 0,
-        colSpace: 4
+        colSpace: 4,
+        titlePadding: 2
     }
 };
 

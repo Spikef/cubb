@@ -66,8 +66,8 @@ function token(str) {
             if (cap[1] && cap[2]) {
                 block.headers = [];
 
-                titles = cap[1].split(/ *\| */);
-                aligns = cap[2].split(/ *\| */);
+                titles = cap[1].split(/ +\| +/);
+                aligns = cap[2].split(/ +\| +/);
 
                 for (i = 0; i < titles.length; i++) {
                     header = {
@@ -93,7 +93,7 @@ function token(str) {
 
             block.cells = cap[3].replace(/^\n+|\n+$/g, '').split('\n');
             block.cells = block.cells.map(function(cell, rowIndex) {
-                cell = cell.replace(/^ *\| *| *\| *$/g, '').split(/ *\| */);
+                cell = cell.replace(/^ *\| *| *\| *$/g, '').split(/ +\| +/);
 
                 item = {};
                 item.rowIndex = rowIndex;

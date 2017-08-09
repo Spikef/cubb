@@ -34,6 +34,7 @@ cubb.render('<b>some text</b>');
 * options.table.padding: 表格左内补，默认为2空格
 * options.table.rowSpace: 两行之间的行距，默认为0行
 * options.table.colSpace: 两个单元格之间的间距，默认为4空格
+* options.table.titlePadding: 标题行左内补，默认为2空格
 
 ## 方法
 
@@ -186,4 +187,4 @@ cubb.render('<b>some text</b>');
     
 ## 致谢
 
-在实现cubb框架过程中，参考了`chalk`和`marked`的部分代码，在此表示感谢!
+在实现`cubb`框架过程中，参考了`chalk`和`marked`的部分代码，在此表示感谢!
