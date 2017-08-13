@@ -29,6 +29,10 @@ exports.merge = function merge() {
     return target;
 };
 
+exports.trim = function(str) {
+    return str.replace(/^\s+|\s+$/g, '');
+};
+
 exports.replace = function replace(regex, opt) {
     regex = regex.source;
     opt = opt || '';

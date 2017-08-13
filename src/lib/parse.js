@@ -93,8 +93,7 @@ function token(str) {
 
             block.cells = cap[3].replace(/^\n+|\n+$/g, '').split('\n');
             block.cells = block.cells.map(function(cell, rowIndex) {
-                cell = cell.replace(/^ *\| *| *\| *$/g, '').split(/ +\| +/);
-
+                cell = cell.replace(/^ *\||\| *$/g, '').split(/ +\| +/).map(utils.trim);
                 item = {};
                 item.rowIndex = rowIndex;
                 item.type = cell.length === 1 && /^\[.*]$/.test(cell[0]) ? 'title' : 'row';
