@@ -3,6 +3,10 @@ var path = require('path');
 var Cubb = require('../src');
 
 var options = {
+    box: {
+        paddingHorizontal: 3,
+        paddingVertical: 1
+    },
     list: {
         space: 2,
         style: '+'

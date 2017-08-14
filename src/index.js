@@ -7,6 +7,14 @@ var render = require('./lib/render');
 var configs = {
     tab: '    ',
     width: 'auto',
+    box: {
+        width: 'auto',
+        margin: 1,
+        padding: 2,
+        borderColor: 'yellow',
+        paddingVertical: 0,
+        paddingHorizontal: 1
+    },
     list: {
         width: 'auto',
         style: '*',

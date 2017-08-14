@@ -1,5 +1,6 @@
 var utils = require('./utils');
 var styles = require('./styles');
+var boxes = require('./box');
 
 var styleFlag = /[\[<]\/?(b|i|d|u|(bg)?color([=\s][^\]]+?)?|(bg)?(black|red|green|yellow|blue|magenta|cyan|white|gray)(bright)?)[\]>]/;
 var styleFlagStart = new RegExp('^' + styleFlag.source, 'i');
@@ -21,6 +22,9 @@ function render(tokens, options) {
                 break;
             case 'list':
                 result += renderList(token, options);
+                break;
+            case 'box':
+                result += renderBox(token, options);
                 break;
         }
     });
@@ -71,6 +75,45 @@ function renderText(str, width) {
     }
 
     return style(string);
+}
+
+function renderBox(token, options) {
+    var opts = options.box;
+    var styles = boxes[token.border];
+    var margin = utils.repeatChars('\n', opts.margin);
+    var padding = utils.repeatChars(opts.padding);
+    var paddingHorizontal = utils.repeatChars(opts.paddingHorizontal);
+    var paddingVertical = utils.repeatChars('\n', opts.paddingVertical);
+    var borderStyle = ['<' + opts.borderColor + '>', '</' + opts.borderColor + '>'];
+    var horizontal = utils.repeatChars(styles.horizontal, token.width + opts.paddingHorizontal * 2);
+    var vertical = style(borderStyle[0] + styles.vertical + borderStyle[1]);
+    var string = '';
+
+    string += margin;
+    string += padding + style(borderStyle[0] + styles.topLeft + horizontal + styles.topRight + borderStyle[1]);
+    string += '\n';
+
+    if (paddingVertical) {
+        string += padding + vertical + utils.repeatChars(token.width + opts.paddingHorizontal * 2) + vertical;
+        string += '\n';
+    }
+
+    string += token.rows.map(function(row) {
+        row = renderCell(row.value, token.align, row.width, token.width);
+        row = padding + vertical + paddingHorizontal + row + paddingHorizontal + vertical;
+        return row;
+    }).join('\n');
+
+    if (paddingVertical) {
+        string += '\n';
+        string += padding + vertical + utils.repeatChars(token.width + opts.paddingHorizontal * 2) + vertical;
+    }
+
+    string += '\n';
+    string += padding + style(borderStyle[0] + styles.bottomLeft + horizontal + styles.bottomRight + borderStyle[1]);
+    string += margin;
+
+    return string;
 }
 
 function renderList(token, options) {

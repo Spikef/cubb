@@ -24,6 +24,12 @@ cubb.render('<b>some text</b>');
 构造函数支持传入渲染选项
 
 * options.tab: 如果显示`\t`，默认为4空格
+* options.box: 盒子渲染选项
+* options.box.margin: 盒子与前后内容之间的行距，默认为1行
+* options.box.padding: 盒子左内补，默认为2空格
+* options.box.borderColor: 边框颜色，默认为'yellow'
+* options.box.paddingVertical: 盒子内垂直间距，默认为0行
+* options.box.paddingHorizontal: 盒子内水平间距，默认为1空格
 * options.list: 列表渲染选项
 * options.list.style: 列表项修饰符号
 * options.list.space: 列表项与列表项之间的行距，默认为0行
@@ -138,6 +144,30 @@ cubb.render('<b>some text</b>');
 * list item2
 * list item3
 ```
+
+### 盒子
+
+#### 单边框
+
+```markdown
+:----------------:
+| some text      |
+| some long text |
+:----------------:
+```
+
+#### 双边框
+
+```markdown
+=================:
+║ some text      ║
+║ some long text ║
+=================:
+```
+
+#### 文本对齐
+
+通过在左边或者右边添加`:`可以指定盒子内部文本的对齐方式。
 
 ### 表格
 

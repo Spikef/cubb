@@ -1,6 +1,6 @@
 {
   "name": "cubb",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "cubb是一种命令行的文本标记语言, 用于输出更友好的命令行文本。",
   "main": "src/index.js",
   "scripts": {

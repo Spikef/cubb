@@ -19,14 +19,38 @@ function token(str) {
     var cap, block, bull, item, titles, aligns, header, i, l;
 
     while (str) {
-        // new line
-        if (cap = rules.newline.exec(str)) {
+        // box
+        if (cap = rules.box.exec(str)) {
             str = str.substring(cap[0].length);
 
-            tokens.push({
-                type: 'space',
-                value: cap[0]
+            block = {
+                type: 'box',
+                width: 0,
+                align: null,
+                border: /^:?=/.test(cap[0]) ? 'double' : 'single',
+                rows: cap[3].replace(/^[|║]\s*|\s*[|║]$/g, '').split(/\s*[|║]\n[|║]\s*/)
+            };
+
+            if (cap[1] && cap[2]) {
+                block.align = 'center';
+            } else if (cap[1]) {
+                block.align = 'left';
+            } else if (cap[2]) {
+                block.align = 'right';
+            }
+
+            block.rows = block.rows.map(function(value) {
+                item = {
+                    value: value,
+                    width: utils.stringWidth(clean(value))
+                };
+
+                block.width = Math.max(block.width, item.width);
+
+                return item;
             });
+
+            tokens.push(block);
 
             continue;
         }
@@ -121,6 +145,18 @@ function token(str) {
             });
 
             tokens.push(block);
+
+            continue;
+        }
+
+        // new line
+        if (cap = rules.newline.exec(str)) {
+            str = str.substring(cap[0].length);
+
+            tokens.push({
+                type: 'space',
+                value: cap[0]
+            });
 
             continue;
         }
