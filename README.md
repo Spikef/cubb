@@ -2,6 +2,8 @@
 
 `cubb`是一种命令行的文本标记语言，用于输出更友好的命令行文本。
 
+![image](https://user-images.githubusercontent.com/7875897/121989793-4ab17400-cdcf-11eb-92c2-ea20b79d6cca.png)
+
 ## 安装与使用
 
 ### 安装
